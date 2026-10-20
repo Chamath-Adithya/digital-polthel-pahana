@@ -15,7 +15,7 @@ Keep the terminal window open for the entire ceremony. To stop the system, press
 
 ## Non-technical Windows client
 
-Download the Windows release ZIP, extract it, and double-click `Digital-Polthel-Pahana.exe`. Node.js, npm, and installation are not required. The Setup page opens automatically. On the first launch, allow the app through Windows Firewall for **Private networks** so the tablet can connect. The unsigned event build may also show Windows SmartScreen; choose **More info → Run anyway**.
+Download the Windows release ZIP, extract it, and double-click `Digital-Polthel-Pahana.exe`. Node.js, npm, and installation are not required. The Setup page opens automatically. On the first launch, approve the Windows administrator prompt that creates a firewall rule restricted to devices on the same local network. The unsigned event build may also show Windows SmartScreen; choose **More info → Run anyway**.
 
 Build the standalone Windows x64 executable from source with `npm run build:windows`. The generated EXE embeds the complete web app and all visual assets.
 

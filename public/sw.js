@@ -1,5 +1,5 @@
-const CACHE = "pahana-shell-v4";
-const ASSETS = ["/", "/display", "/control", "/styles.css", "/app.js", "/assets/ceremony-hall.png", "/assets/event-logo.png"];
+const CACHE = "pahana-shell-v5";
+const ASSETS = ["/", "/display", "/control", "/styles.css", "/app.js", "/vendor/socket.io.min.js", "/assets/ceremony-hall.png", "/assets/event-logo.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)));

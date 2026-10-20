@@ -1,6 +1,6 @@
 {
   "name": "digital-polthel-pahana",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Realtime virtual oil-lamp lighting ceremony for Raawa 26",
   "main": "server.js",
