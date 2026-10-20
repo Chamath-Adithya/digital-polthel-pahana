@@ -1,6 +1,6 @@
 # Digital Polthel Pahana — Rāwa 26
 
-A complete local-network ceremony system with a fullscreen projector display and a touch-friendly tablet controller for 15 virtual oil lamps. The display uses a custom lotus-inspired ceremonial tree composition with curved brass tiers, layered flames, blue flame cores, glow, sparks, smoke, and a full-light finale.
+A complete local-network ceremony system with a fullscreen projector display and a touch-friendly tablet controller for 15 virtual oil lamps. The display uses a custom lotus-inspired ceremonial tree composition with curved brass tiers, layered flames, blue flame cores, glow, sparks, smoke, and a full-light finale. Its “Voice Aura” links the visual to the dubbing theme: every ignition releases a golden sound-wave ripple, while a subtle central frequency halo grows with the number of illuminated lamps.
 
 ## Quick start (event day)
 

@@ -12,12 +12,20 @@
       <div class="stage-vignette"></div>
       <div class="floating-dust" aria-hidden="true"></div>
       <header class="display-header">
-        <div class="partner-mark partner-left"><span class="mark-ring">◉</span><span>DUBBING<br />DIVISION</span></div>
+        <img class="dubbing-logo" src="/assets/dubbing-division-logo.png" alt="Dubbing Division" />
         <img class="event-logo" src="/assets/event-logo.png" alt="Rāwa 26" />
         <div class="partner-mark partner-right"><span class="voice-small">JPURA</span><strong>VOICE</strong></div>
       </header>
 
       <section class="lamp-theatre" aria-label="Fifteen ceremonial oil lamps">
+        <div class="voice-aura" id="voice-aura" aria-hidden="true">
+          <div class="voice-orbit orbit-one"></div>
+          <div class="voice-orbit orbit-two"></div>
+          <div class="voice-orbit orbit-three"></div>
+          <div class="voice-spectrum">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
         <div class="ceremonial-arbor" aria-hidden="true">
           <svg viewBox="0 0 1200 720" preserveAspectRatio="none">
             <defs>
@@ -47,7 +55,6 @@
         <div class="display-count"><strong id="lit-count">0</strong><span>/ 15 LIGHTS</span></div>
       </footer>
 
-      <div class="connection-pill display-connection" id="display-connection"><span class="status-dot"></span><span>Connecting…</span></div>
       <button class="fullscreen-button" id="fullscreen-button" type="button" aria-label="Enter fullscreen">⛶</button>
 
       <div class="welcome-overlay" id="welcome-overlay">
@@ -60,7 +67,7 @@
           <small>You can exit fullscreen anytime using the Esc key.</small>
         </div>
       </div>
-      <div class="finale" id="finale" aria-hidden="true"><div class="finale-rays"></div><p>All fifteen lights shine together</p></div>
+      <div class="finale" id="finale" aria-hidden="true"><div class="finale-rays"></div></div>
     </main>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/app.js"></script>

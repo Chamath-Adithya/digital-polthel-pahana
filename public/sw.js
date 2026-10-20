@@ -1,4 +1,4 @@
-const CACHE = "pahana-shell-v2";
+const CACHE = "pahana-shell-v3";
 const ASSETS = ["/", "/display", "/control", "/styles.css", "/app.js", "/assets/ceremony-hall.png", "/assets/event-logo.png"];
 
 self.addEventListener("install", (event) => {

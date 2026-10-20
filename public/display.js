@@ -3,7 +3,8 @@ const countLabel = document.getElementById("lit-count");
 const progressFill = document.getElementById("progress-fill");
 const message = document.getElementById("ceremony-message");
 const finale = document.getElementById("finale");
-const connection = document.getElementById("display-connection");
+const theatre = document.querySelector(".lamp-theatre");
+const voiceAura = document.getElementById("voice-aura");
 const overlay = document.getElementById("welcome-overlay");
 const beginButton = document.getElementById("begin-button");
 const fullscreenButton = document.getElementById("fullscreen-button");
@@ -73,6 +74,16 @@ function playChime(index, isFinale = false) {
   });
 }
 
+function releaseVoicePulse(index) {
+  const position = lampLayout[index];
+  const pulse = document.createElement("span");
+  pulse.className = "voice-pulse";
+  pulse.style.setProperty("--pulse-x", `${position.x}%`);
+  pulse.style.setProperty("--pulse-y", `${position.y}%`);
+  theatre.appendChild(pulse);
+  pulse.addEventListener("animationend", () => pulse.remove(), { once: true });
+}
+
 function renderState(state) {
   const lit = state.lamps.filter(Boolean).length;
   document.querySelectorAll(".oil-lamp").forEach((lamp, index) => {
@@ -84,15 +95,17 @@ function renderState(state) {
     if (justLit) {
       window.setTimeout(() => lamp.classList.remove("just-lit"), 1100);
       playChime(index, lit === 15);
+      releaseVoicePulse(index);
     }
   });
 
   countLabel.textContent = lit;
   progressFill.style.width = `${(lit / 15) * 100}%`;
+  voiceAura.style.setProperty("--voice-level", (lit / 15).toFixed(3));
   message.textContent = lit === 0
     ? "Awaiting the ceremonial lighting"
     : lit === 15
-      ? "The ceremony is illuminated"
+      ? ""
       : `${String(lit).padStart(2, "0")} of 15 ceremonial lights now shine`;
 
   finale.classList.toggle("is-visible", lit === 15);
@@ -100,7 +113,6 @@ function renderState(state) {
   previousLamps = [...state.lamps];
 }
 
-Pahana.connectionBadge(connection);
 Pahana.onState(renderState);
 
 if (new URLSearchParams(window.location.search).has("preview")) {
