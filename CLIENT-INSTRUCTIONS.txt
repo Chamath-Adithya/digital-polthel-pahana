@@ -1,0 +1,29 @@
+DIGITAL POLTHEL PAHANA - CLIENT QUICK GUIDE
+============================================
+
+No installation, Node.js, or npm is required.
+
+EVENT DAY
+---------
+1. Connect the Windows laptop and tablet to the same private Wi-Fi or phone hotspot.
+2. Double-click Digital-Polthel-Pahana.exe.
+3. If Windows Firewall asks, tick "Private networks" and click "Allow access".
+4. Keep the black Digital Polthel Pahana window open throughout the ceremony.
+5. The Setup page opens automatically in the laptop browser.
+6. Click "Open Main Display" and then "Begin Ceremony Display" for the projector.
+7. Scan the QR code on the Setup page using the tablet camera.
+8. Use the tablet controller to light the 15 pahan.
+
+TO FINISH
+---------
+Close the black Digital Polthel Pahana window after the event.
+
+IMPORTANT
+---------
+- Guest/university Wi-Fi can block communication between devices. A private router
+  or phone hotspot is recommended.
+- The first launch may show a Windows SmartScreen warning because this event app is
+  not commercially code-signed. Click "More info" and then "Run anyway".
+- Do not close the black app window while the ceremony is running.
+- If the tablet cannot connect, confirm both devices are on the same Wi-Fi and that
+  the Windows Firewall prompt was allowed for Private networks.

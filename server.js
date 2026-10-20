@@ -3,14 +3,19 @@ const http = require("http");
 const os = require("os");
 const path = require("path");
 const fs = require("fs");
+const { spawn } = require("child_process");
 const QRCode = require("qrcode");
 const { Server } = require("socket.io");
 
 const PORT = Number(process.env.PORT) || 3000;
 const HOST = "0.0.0.0";
 const LAMP_COUNT = 15;
-const DATA_DIR = path.join(__dirname, "data");
+const IS_PACKAGED = Boolean(process.pkg);
+const DATA_DIR = IS_PACKAGED
+  ? path.join(process.env.APPDATA || path.dirname(process.execPath), "DigitalPolthelPahana")
+  : path.join(__dirname, "data");
 const STATE_FILE = path.join(DATA_DIR, "lamp-state.json");
+const PUBLIC_DIR = path.join(__dirname, "public");
 
 const app = express();
 const server = http.createServer(app);
@@ -66,7 +71,7 @@ function getLanAddress() {
 }
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public"), { extensions: ["html"] }));
+app.use(express.static(PUBLIC_DIR, { extensions: ["html"] }));
 
 app.get("/api/info", async (_req, res) => {
   const host = getLanAddress();
@@ -128,6 +133,16 @@ server.listen(PORT, HOST, () => {
   console.log(`Setup:      ${baseUrl}`);
   console.log(`Display:    ${baseUrl}/display`);
   console.log(`Controller: ${baseUrl}/control\n`);
+
+  if (IS_PACKAGED) {
+    setTimeout(() => {
+      const localUrl = `http://127.0.0.1:${PORT}`;
+      const opener = process.platform === "win32"
+        ? spawn("cmd", ["/c", "start", "", localUrl], { detached: true, stdio: "ignore", windowsHide: true })
+        : spawn("xdg-open", [localUrl], { detached: true, stdio: "ignore" });
+      opener.unref();
+    }, 900);
+  }
 });
 
 function shutdown() {

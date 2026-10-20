@@ -200,8 +200,6 @@ button { font: inherit; }
 .welcome-card p { margin: 0 auto 25px; max-width: 370px; color: #c9b6ca; font: 15px/1.6 Arial, sans-serif; }
 .welcome-card button { width: 100%; min-height: 55px; border: 0; border-radius: 11px; color: #351328; background: linear-gradient(135deg, #fff1ad, #dfa02d); font-weight: 700; cursor: pointer; box-shadow: 0 10px 30px rgba(224, 157, 40, .25); }
 .welcome-card small { display: block; margin-top: 15px; color: #9f899f; font: 11px Arial, sans-serif; }
-.welcome-ornament { color: var(--gold); font-size: 22px; }
-
 .finale { position: absolute; z-index: 8; inset: 0; pointer-events: none; opacity: 0; visibility: hidden; display: grid; place-items: center; transition: opacity 1.2s; }
 .finale.is-visible { opacity: 1; visibility: visible; }
 .finale-rays { position: absolute; left: 50%; top: 53%; width: 90vh; height: 90vh; translate: -50% -50%; opacity: .16; background: repeating-conic-gradient(from 0deg, #ffd66b 0 3deg, transparent 3deg 11deg); mask-image: radial-gradient(circle, #000, transparent 67%); animation: rotate-rays 50s linear infinite; }

@@ -13,6 +13,12 @@ A complete local-network ceremony system with a fullscreen projector display and
 
 Keep the terminal window open for the entire ceremony. To stop the system, press `Ctrl+C` in that terminal.
 
+## Non-technical Windows client
+
+Download the Windows release ZIP, extract it, and double-click `Digital-Polthel-Pahana.exe`. Node.js, npm, and installation are not required. The Setup page opens automatically. On the first launch, allow the app through Windows Firewall for **Private networks** so the tablet can connect. The unsigned event build may also show Windows SmartScreen; choose **More info → Run anyway**.
+
+Build the standalone Windows x64 executable from source with `npm run build:windows`. The generated EXE embeds the complete web app and all visual assets.
+
 ## Controller safety
 
 - A numbered button can only light its pahana once.
