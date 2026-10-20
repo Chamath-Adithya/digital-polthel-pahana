@@ -12,6 +12,10 @@ const connection = document.getElementById("control-connection");
 let currentState = Array(15).fill(false);
 let toastTimer;
 
+function vibrate(pattern) {
+  if (navigator.userActivation?.isActive) navigator.vibrate?.(pattern);
+}
+
 controlGrid.innerHTML = Array.from({ length: 15 }, (_, index) => `
   <button class="lamp-control" type="button" data-index="${index}" aria-label="Light pahana ${index + 1}">
     <span class="mini-flame"><i></i></span>
@@ -56,13 +60,13 @@ controlGrid.addEventListener("click", (event) => {
   const button = event.target.closest(".lamp-control");
   if (!button || button.disabled) return;
   Pahana.ignite(Number(button.dataset.index));
-  navigator.vibrate?.(35);
+  vibrate(35);
 });
 
 nextButton.addEventListener("click", () => {
   if (nextButton.disabled) return;
   Pahana.next();
-  navigator.vibrate?.(40);
+  vibrate(40);
 });
 
 function addHoldAction(button, action) {
@@ -80,10 +84,10 @@ function addHoldAction(button, action) {
     event.preventDefault();
     started = true;
     button.classList.add("is-holding");
-    navigator.vibrate?.(20);
+    vibrate(20);
     timer = setTimeout(() => {
       action();
-      navigator.vibrate?.([50, 40, 80]);
+      vibrate([50, 40, 80]);
       cancel();
     }, 1500);
   };

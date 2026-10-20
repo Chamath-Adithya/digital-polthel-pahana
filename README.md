@@ -66,6 +66,8 @@ digital-polthel-pahana/
 
 **Tablet cannot open the controller:** verify both devices use the same Wi-Fi. Some university/guest Wi-Fi networks block communication between devices; use a private router or phone hotspot in that case.
 
+The Windows build selects an active physical Wi-Fi/Ethernet adapter with a default gateway and ignores VirtualBox, VMware, Hyper-V, WSL, Docker, VPN, and similar virtual adapters. On first launch, approve the visible administrator prompt so the same-network firewall rule can be created.
+
 **Display says “Reconnecting”:** make sure the terminal running the server is still open, then refresh the display.
 
 **Need to restart from zero:** open the controller and hold **Reset** for 1.5 seconds.

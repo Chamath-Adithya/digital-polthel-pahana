@@ -65,9 +65,11 @@ function defaultWindowsLanAddress() {
   if (process.platform !== "win32") return null;
   try {
     const script = [
-      "$route = Get-NetRoute -DestinationPrefix '0.0.0.0/0' | Sort-Object RouteMetric, InterfaceMetric | Select-Object -First 1",
-      "$ip = Get-NetIPAddress -InterfaceIndex $route.InterfaceIndex -AddressFamily IPv4 | Where-Object { $_.IPAddress -notlike '169.254.*' } | Select-Object -First 1",
-      "$ip.IPAddress",
+      "$virtual = 'VirtualBox|VMware|vEthernet|WSL|Hyper-V|Loopback|Docker|Tailscale|ZeroTier'",
+      "$configs = Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway -ne $null -and $_.NetAdapter.Status -eq 'Up' -and $_.InterfaceAlias -notmatch $virtual -and $_.NetAdapter.InterfaceDescription -notmatch $virtual }",
+      "$ranked = $configs | ForEach-Object { $metric = (Get-NetIPInterface -InterfaceIndex $_.InterfaceIndex -AddressFamily IPv4 -ErrorAction SilentlyContinue).InterfaceMetric; [PSCustomObject]@{ Config = $_; Metric = [int]$metric } } | Sort-Object Metric",
+      "$ip = $ranked | ForEach-Object { $_.Config.IPv4Address.IPAddress } | Where-Object { $_ -and $_ -notlike '169.254.*' } | Select-Object -First 1",
+      "$ip",
     ].join("; ");
     const address = execFileSync("powershell.exe", ["-NoProfile", "-NonInteractive", "-Command", script], {
       encoding: "utf8",
@@ -103,14 +105,14 @@ function getLanAddress() {
 function ensureWindowsFirewallAccess() {
   if (!IS_PACKAGED || process.platform !== "win32") return;
 
-  const ruleName = "Digital Polthel Pahana (Same Network)";
+  const ruleName = "DigitalPolthelPahana";
   const existing = spawnSync("netsh.exe", ["advfirewall", "firewall", "show", "rule", `name=${ruleName}`], {
     windowsHide: true,
     stdio: "ignore",
   });
   if (existing.status === 0) return;
 
-  console.log("Windows may ask for permission so the tablet can connect.");
+  console.log("Windows permission is required once so the phone can connect.");
   const firewallArguments = [
     "advfirewall",
     "firewall",
@@ -126,12 +128,20 @@ function ensureWindowsFirewallAccess() {
   ];
   const quotedArguments = firewallArguments.map((argument) => `'${argument.replaceAll("'", "''")}'`).join(",");
   const powerShell = `$arguments = @(${quotedArguments}); Start-Process -FilePath 'netsh.exe' -ArgumentList $arguments -Verb RunAs -Wait`;
-  const elevated = spawn("powershell.exe", ["-NoProfile", "-Command", powerShell], {
-    detached: true,
-    stdio: "ignore",
-    windowsHide: true,
+  const elevated = spawnSync("powershell.exe", ["-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", powerShell], {
+    stdio: "inherit",
+    windowsHide: false,
   });
-  elevated.unref();
+
+  const verified = spawnSync("netsh.exe", ["advfirewall", "firewall", "show", "rule", `name=${ruleName}`], {
+    windowsHide: true,
+    stdio: "ignore",
+  });
+  if (elevated.status === 0 && verified.status === 0) {
+    console.log("Phone access is enabled for this Wi-Fi network.");
+  } else {
+    console.warn("Phone access was not enabled. Please restart the app and choose Yes on the Windows permission prompt.");
+  }
 }
 
 app.use(express.json());
