@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#32103a" />
+    <title>Rāwa 26 · Pahana Controller</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="control-page">
+    <main class="controller-shell">
+      <header class="controller-header">
+        <div>
+          <p class="controller-kicker">RĀWA 26 · LIVE CONTROL</p>
+          <h1>Pahan Ceremony</h1>
+        </div>
+        <div class="connection-pill" id="control-connection"><span class="status-dot"></span><span>Connecting…</span></div>
+      </header>
+
+      <section class="controller-status">
+        <div class="status-copy"><span id="status-label">Ready to begin</span><strong><b id="control-count">0</b> of 15 lights</strong></div>
+        <div class="control-progress"><i id="control-progress-fill"></i></div>
+      </section>
+
+      <section class="controller-primary">
+        <button class="next-button" id="next-button" type="button">
+          <span class="next-flame">◆</span>
+          <span><small>NEXT IN SEQUENCE</small><strong id="next-label">Light Pahana 01</strong></span>
+          <span class="next-arrow">→</span>
+        </button>
+      </section>
+
+      <section class="lamp-controls" aria-labelledby="lamp-control-title">
+        <div class="section-heading">
+          <h2 id="lamp-control-title">Individual Lights</h2>
+          <span>Tap once to light</span>
+        </div>
+        <div class="control-grid" id="control-grid"></div>
+      </section>
+
+      <section class="ceremony-actions">
+        <button class="hold-button all-button" id="all-button" type="button">
+          <span class="hold-progress"></span><span>✦</span><strong>Hold to Light All</strong>
+        </button>
+        <button class="hold-button reset-button" id="reset-button" type="button">
+          <span class="hold-progress"></span><span>↺</span><strong>Hold to Reset</strong>
+        </button>
+      </section>
+      <p class="hold-hint">Safety controls require a 1.5 second hold.</p>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+    <script src="/control.js"></script>
+  </body>
+</html>

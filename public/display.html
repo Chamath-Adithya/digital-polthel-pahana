@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#120612" />
+    <title>Rāwa 26 · Digital Pahana</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="display-page">
+    <main class="ceremony-stage" id="ceremony-stage">
+      <div class="stage-vignette"></div>
+      <div class="floating-dust" aria-hidden="true"></div>
+      <header class="display-header">
+        <div class="partner-mark partner-left"><span class="mark-ring">◉</span><span>DUBBING<br />DIVISION</span></div>
+        <img class="event-logo" src="/assets/event-logo.png" alt="Rāwa 26" />
+        <div class="partner-mark partner-right"><span class="voice-small">JPURA</span><strong>VOICE</strong></div>
+      </header>
+
+      <section class="lamp-theatre" aria-label="Fifteen ceremonial oil lamps">
+        <div class="ceremonial-arbor" aria-hidden="true">
+          <svg viewBox="0 0 1200 720" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="branchGold" x1="0" x2="1">
+                <stop offset="0" stop-color="#6c3205" />
+                <stop offset=".25" stop-color="#f4c252" />
+                <stop offset=".48" stop-color="#fff0a3" />
+                <stop offset=".7" stop-color="#bd7012" />
+                <stop offset="1" stop-color="#542303" />
+              </linearGradient>
+              <filter id="branchGlow"><feGaussianBlur stdDeviation="5" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+            </defs>
+            <path class="arbor-shadow" d="M600 676 C594 570 610 416 600 108 M600 280 C480 250 344 277 220 352 M600 280 C720 250 856 277 980 352 M600 430 C438 386 270 426 92 548 M600 430 C762 386 930 426 1108 548" />
+            <path class="arbor-main" d="M600 676 C594 570 610 416 600 108 M600 280 C480 250 344 277 220 352 M600 280 C720 250 856 277 980 352 M600 430 C438 386 270 426 92 548 M600 430 C762 386 930 426 1108 548" />
+            <path class="arbor-highlight" d="M600 674 C600 545 606 402 600 114 M600 284 C478 260 352 286 228 354 M600 284 C722 260 848 286 972 354" />
+            <circle cx="600" cy="281" r="18" class="arbor-jewel" />
+            <circle cx="600" cy="432" r="23" class="arbor-jewel" />
+          </svg>
+          <div class="lotus-plinth"><i></i><span></span><b></b></div>
+        </div>
+        <div class="lamp-grid" id="lamp-grid"></div>
+      </section>
+
+      <footer class="display-footer">
+        <p id="ceremony-message">Awaiting the ceremonial lighting</p>
+        <div class="progress-track"><div id="progress-fill"></div></div>
+        <div class="display-count"><strong id="lit-count">0</strong><span>/ 15 LIGHTS</span></div>
+      </footer>
+
+      <div class="connection-pill display-connection" id="display-connection"><span class="status-dot"></span><span>Connecting…</span></div>
+      <button class="fullscreen-button" id="fullscreen-button" type="button" aria-label="Enter fullscreen">⛶</button>
+
+      <div class="welcome-overlay" id="welcome-overlay">
+        <div class="welcome-card">
+          <div class="welcome-ornament">✦</div>
+          <img src="/assets/event-logo.png" alt="Rāwa 26" />
+          <h1>Digital Pahan Ceremony</h1>
+          <p>Start the display to enable fullscreen visuals and ceremony audio.</p>
+          <button id="begin-button" type="button">Begin Ceremony Display</button>
+          <small>You can exit fullscreen anytime using the Esc key.</small>
+        </div>
+      </div>
+      <div class="finale" id="finale" aria-hidden="true"><div class="finale-rays"></div><p>All fifteen lights shine together</p></div>
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+    <script src="/display.js"></script>
+  </body>
+</html>

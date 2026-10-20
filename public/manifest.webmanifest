@@ -1,0 +1,9 @@
+{
+  "name": "Digital Polthel Pahana",
+  "short_name": "Pahana",
+  "start_url": "/control",
+  "display": "standalone",
+  "background_color": "#180719",
+  "theme_color": "#4b1859",
+  "icons": []
+}

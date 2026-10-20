@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#4b1859" />
+    <title>Digital Polthel Pahana · Setup</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="setup-page">
+    <main class="setup-shell">
+      <section class="setup-copy">
+        <div class="eyebrow">RĀWA 26 · CEREMONY SYSTEM</div>
+        <img class="setup-logo" src="/assets/event-logo.png" alt="Rāwa 26 — All Island Dubbing Competition" />
+        <h1>Digital Polthel Pahana</h1>
+        <p class="lead">One screen. One tablet. Fifteen ceremonial lights, perfectly in sync.</p>
+        <div class="setup-actions">
+          <a class="primary-button" href="/display">Open Main Display</a>
+          <a class="secondary-button" href="/control">Open Tablet Controller</a>
+        </div>
+        <div class="setup-note">
+          <span class="setup-note-icon">✦</span>
+          <p>Keep this computer and the tablet on the same Wi-Fi network. Open the main display on the projector, then scan the controller QR code using the tablet.</p>
+        </div>
+      </section>
+      <aside class="connection-card">
+        <div class="card-kicker">TABLET CONNECTION</div>
+        <div class="qr-frame"><img id="qr-code" alt="Tablet controller QR code" /></div>
+        <p class="scan-label">Scan to open the controller</p>
+        <code id="control-url">Finding your local address…</code>
+        <div class="connection-list">
+          <div><span>1</span><p><strong>Projector</strong>Open “Main Display” and enter fullscreen.</p></div>
+          <div><span>2</span><p><strong>Tablet</strong>Scan this QR code using the camera.</p></div>
+          <div><span>3</span><p><strong>Light</strong>Tap each numbered lamp in order.</p></div>
+        </div>
+      </aside>
+    </main>
+    <script>
+      fetch('/api/info').then((response) => response.json()).then((info) => {
+        document.getElementById('control-url').textContent = info.controlUrl;
+        if (info.qrCode) document.getElementById('qr-code').src = info.qrCode;
+      }).catch(() => {
+        document.getElementById('control-url').textContent = 'Start the server and refresh this page.';
+      });
+    </script>
+  </body>
+</html>
